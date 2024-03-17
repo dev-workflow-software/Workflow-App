@@ -38,6 +38,14 @@ export const RegisterClient = ({setClientKey}) => {
                     <Button variant="contained" type="submit">Register</Button>
                 </FormControl>
             </form>
+            <h2>How do I get a registration key?</h2>
+            <p>
+                Ask the person who referred you to this website, They will be able to generate a registration key for you. If you weren't referred by a human, click <a href={`mailto:workflowsoftwaredev@gmail.com?subject=${encodeURIComponent('I would like to register to use Workflow')}&body=${encodeURIComponent('Hi there!\r\n\r\nMy name is ______ and I would like to use Workflow\r\n\r\nKind Regards')}`} target="_blank">here</a> to email a workflow employee. They will reply with a long-life registration key, for you to use when next convenient.
+            </p>
+            <h2>Why do I need a registration key?</h2>
+            <p>
+                Workflow requires that devices can only connect to their API's if the device has been approved by a known user on a previously registered device. After sending your registration key, we will store it in your browser so you can continue to access our services
+            </p>
         </Container>     
     </div>);
 };

@@ -58,8 +58,12 @@ router.post('/registerClient',bodyParser.json(),async(req,res)=>{
     
     console.log(`${new Date()}: Registration key [${key.key}] consumed. Deleting . . .`);
     regKeys.splice(regKeys.indexOf(key),1);
-    console.log(await RegisteredClients.create({key:key.key,creator:key.creator}));
-
+    const newClient = await RegisteredClients.create({key:key.key,creator:key.creator});
+    if (!newClient){
+        res.sendStatus(500);
+        return;
+    }
+    
     res.status(201);
     res.send({key});
 })

@@ -1,4 +1,3 @@
-table, th, td {
-    border: 5px solid red;
-    border-collapse: collapse;
-  }
+body{
+  margin: 0;
+}
