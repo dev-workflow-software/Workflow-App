@@ -12,16 +12,48 @@ Workflow offers a hosting solution which serves a version of the software. The h
 
 # How can you get involved?
 Do you have knowledge in any of the following?:
-- # front end
-- React (javascript)
-- React-Admin
-- Axios
-- # back end
-- nodejs
-- Mongoose / MongoDB
-- express
+- Front end:
+    - React (javascript)
+    - React-Admin
+    - Axios
+- Back end:
+    - nodejs
+    - Mongoose / MongoDB
+    - express
 
-Then, register to become a contributor using your github account at _______
+Then, register to become a contributor using your github account at _______ Once registered, take a look at the Projects or Issues section, implement or fix anything you want, and submit a pull request when you're done, it's that simple 😊
 
 # How do you ask for help?
 Reach out via email: workflowsoftwaredev@gmail.com
+
+# Installation
+1. Clone the git repoxitory
+2. Configure envirionment variables
+- in the 'client' directory:
+    1. Create a `.env` file
+    2. Use the below template. You will need to know how to configure, and generate keys for the necessary services, but you can ask for help if you get stuck
+        ```
+        VITE_PUBLIC_API_HOST=
+        ```
+- In the 'server' directory:
+   1. Create a `.env` file
+    2. Use the below template. You will need to know how to configure, and generate keys for the necessary services, but you can ask for help if you get stuck
+        ```
+        # MongoDB Database settings
+        APP_DATABASE_NAME=
+        APP_DATABASE_USER=
+        APP_DATABASE_URL=c
+        APP_DATABASE_PASS=
+
+        # Expiry Settings
+        APP_EXPIRY_REGISTRATION_KEY_MINUTES=
+        ``` 
+3. open 2 terminals in the project directory.
+- From the first terminal:
+    1. `cd client`
+    2. `npm install`
+    3. `npm run dev`
+- From the second terminal:
+    1. `cd server`
+    2. `npm install`
+    3. `npm run dev`
