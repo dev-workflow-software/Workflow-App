@@ -1,9 +1,10 @@
 # What is Workflow?
-Workflow is "The ultimate tool for managing your business" targeted at startup companies in the corporate services industry.
-It combines functionality from:
+Workflow is "The last tool you'll ever need to make your business run smoothly".
+It offers unrivalled financial and operational insight to your business and gives you the tools to make informed decisions to steer your business in the right direction.
+Built with knowledge from:
 - Job Management Software,
-- Accounting Software
-- Devops Software
+- Accounting Software,
+- Devops Software;
 
 and bundles everything neatly together in one package. 
 

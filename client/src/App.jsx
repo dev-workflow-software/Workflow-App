@@ -7,34 +7,44 @@ import { DocumentList } from './documents/List';
 import { DocumentShow } from './documents/Show';
 import { DocumentEdit } from './documents/Edit';
 import { DocumentCreate } from './documents/Create';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Loader } from './components/Loader';
 import { RegisterClient } from './components/RegisterClient';
 import axios from 'axios';
-import { IconButton } from '@mui/material';
+import { IconButton, Button } from '@mui/material';
 import LabelIcon from '@mui/icons-material/Label';
 import SettingsIcon from '@mui/icons-material/Settings';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Config } from './components/Config';
+import { Settings } from './components/Settings/Settings';
+import { useNavigate } from "react-router-dom";
+import { WorkflowSettings } from './components/Settings/Workflow';
+import { StockControlSettings } from './components/Settings/StockControl';
+import './App.css';
 
 const SettingsButton = () => {
-  return <IconButton color="inherit">
+  const navigate = useNavigate();
+  const settingsClick = (e)=>{
+    console.log(e);
+    navigate("/settings")
+  }
+
+
+  return <IconButton color="inherit" onClick={settingsClick}>
         <SettingsIcon />
   </IconButton>
 };
 
 const MenuSection = ({index}) => {
   const [expanded,setExpanded] = useState(false);
-  console.log('render');
-
-  const handleExpandClick = () => {
+  
+  const handleExpandClick = useCallback(() => {
     setExpanded(!expanded);
-  }
+  },[expanded]);
   return (
     <>
-      <a onClick={handleExpandClick} className="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-krc73u-MuiButtonBase-root-MuiMenuItem-root-RaMenuItemLink-root" tabIndex="0" role="menuitem">
-        <div className="MuiListItemIcon-root RaMenuItemLink-icon css-cveggr-MuiListItemIcon-root">
+      <a onClick={handleExpandClick} className="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root .CustomColapsibleMenu" tabIndex="0" role="menuitem">
+        <div className="MuiListItemIcon-root RaMenuItemLink-icon">
           {expanded?<KeyboardArrowUpIcon/>:<KeyboardArrowDownIcon/>}
         </div>
         {index}
@@ -53,19 +63,18 @@ const MenuSection = ({index}) => {
   </Menu>
 };
 const MyAppBar = () => {
-  const settingsClick = (e)=>{
-    console.log(e);
-  }
-
   return <AppBar>
     <TitlePortal />
-    <Link component={RouterLink} to="/config">
-        <SettingsButton />
-    </Link>
+    <SettingsButton />
   </AppBar>
 };
 
-const MyLayout = props => <Layout {...props} appBar={MyAppBar} menu={MyMenu}/>
+const MyLayout = props => { 
+  return <Layout {...props} appBar={MyAppBar} menu={MyMenu}>
+    {/* TODO: Breadcrumbs */}
+    {props.children}
+  </Layout> 
+}
 
 
 function App() {
@@ -119,7 +128,11 @@ function App() {
         <Resource name="users" recordRepresentation={(record) => `${record.name} ${record.surname}` } />
         <Resource name="stages" recordRepresentation="name"/>
         <CustomRoutes>
-            <Route path="/config" element={<Config />} />
+            <Route path="/settings" element={<Settings />}>
+              <Route index element={<WorkflowSettings />} />
+              <Route path="workflow" element={<WorkflowSettings />} />
+              <Route path="stockControl" element={<StockControlSettings />} />
+            </Route>
         </CustomRoutes>
       </Admin>
     );
